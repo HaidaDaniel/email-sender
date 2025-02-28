@@ -45,7 +45,7 @@ const QuillEditor = ({
       value={value}
       onChange={onChange}
       placeholder="enter your message here"
-      style={{ height: "100%", minHeight: "250px" }}
+      style={{ height: "100%", minHeight: "150px" }}
       />
   );
 };

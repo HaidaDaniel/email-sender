@@ -1,62 +1,36 @@
-import { useEffect, useState } from "react";
 import {
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Container,
-  Typography,
-  TableFooter,
-  TablePagination,
-  Box,
-} from "@mui/material";
-import type { EmailLog } from "@/utils/types";
-import { getEmails } from "@/utils/api";
-import Loader from "@/components/Loader";
-
-const EmailTable = () => {
-  const [emails, setEmails] = useState<EmailLog[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [totalCount, setTotalCount] = useState<number>(0);
-  const [page, setPage] = useState<number>(0);
-  const rowsPerPage = 2;
-
-  useEffect(() => {
-    const fetchEmails = async () => {
-      setLoading(true);
-      try {
-        const offset = page * rowsPerPage;
-        const response = await getEmails(rowsPerPage, offset);
-        setEmails(response.results);
-        setTotalCount(response.count);
-      } catch (error) {
-        console.error("Error fetching emails", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEmails();
-  }, [page]);
-
-  const handleChangePage = (_: any, newPage: number) => {
-    setPage(newPage);
-  };
-
-  return (
-    <Container>
-      <Typography variant="h5" sx={{ mt: 3, mb: 2 }}>
-        Sent Emails
-      </Typography>
-
-      <Box sx={{ position: "relative", minHeight: "100px" }}>
-        {loading && (
-         
-            <Loader />
-        )}
-
-        {!loading && (
+    Table,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableBody,
+    TableFooter,
+    TablePagination,
+    Container,
+    Typography,
+  } from "@mui/material";
+  import type { EmailLog } from "@/utils/types";
+  import Loader from "@/components/Loader";
+  
+  interface EmailTableProps {
+    emails: EmailLog[];
+    loading: boolean;
+    page: number;
+    totalCount: number;
+    rowsPerPage: number;
+    onPageChange: (newPage: number) => void;
+  }
+  
+  const EmailTable = ({ emails, loading, page, totalCount, rowsPerPage, onPageChange }: EmailTableProps) => {
+    return (
+      <Container>
+        <Typography variant="h5" sx={{ mt: 3, mb: 2 }}>
+          Sent Emails
+        </Typography>
+  
+        {loading ? (
+          <Loader />
+        ) : (
           <Table>
             <TableHead>
               <TableRow>
@@ -89,15 +63,15 @@ const EmailTable = () => {
                   count={totalCount}
                   rowsPerPage={rowsPerPage}
                   page={page}
-                  onPageChange={handleChangePage}
+                  onPageChange={(_, newPage) => onPageChange(newPage)}
                 />
               </TableRow>
             </TableFooter>
           </Table>
         )}
-      </Box>
-    </Container>
-  );
-};
-
-export default EmailTable;
+      </Container>
+    );
+  };
+  
+  export default EmailTable;
+  
