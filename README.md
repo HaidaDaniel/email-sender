@@ -43,6 +43,10 @@ VITE_API_URL=http://your-api-url.com
 ```bash
 npm run dev
 ```
+
+## Screenshot
+![Alt Text](png/ui.png)
+
 ## Usage
 1. Register a new account or log in with an existing account.
 2. Compose and send an email using the rich text editor.

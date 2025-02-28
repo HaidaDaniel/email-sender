@@ -10,7 +10,7 @@ const Profile = () => {
   return (
     <Card
       sx={{
-        maxWidth: 500,
+        maxWidth: 700,
         mx: 'auto',
         mb: 3,
         textAlign: 'center',
@@ -19,7 +19,12 @@ const Profile = () => {
         p: 2,
       }}
     >
-      <CardContent>
+      <CardContent
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 3,
+      }}>
         <Avatar
           sx={{
             width: 80,
