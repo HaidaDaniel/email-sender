@@ -5,6 +5,7 @@ import EmailForm from "@/components/EmailForm";
 import EmailTable from "@/components/EmailTable";
 import { fetchEmails, setPage } from "@/store/slices/emailSlice";
 import type { RootState, AppDispatch } from "@/store";
+import Profile from "@/components/Profile";
 
 const EmailPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -19,6 +20,7 @@ const EmailPage = () => {
       <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
         Email App
       </Typography>
+      <Profile />
       <EmailForm />
       <EmailTable
         emails={emails}
