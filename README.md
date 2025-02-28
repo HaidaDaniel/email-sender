@@ -3,7 +3,7 @@
 EmailSender is a web application for sending and managing emails. It allows users to **register, log in, send emails, and view sent email history**.
 
 ## Features
-- User authentication (JWT token)
+- User authentication
 - Send emails using a rich text editor
 - View sent emails with pagination
 - Global error handling
